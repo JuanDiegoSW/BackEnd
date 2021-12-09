@@ -9,6 +9,9 @@ class Server {
     constructor() {
         this.app  = express();
         this.port = process.env.PORT;
+		//this.host = process.env.HOST;
+        //this.PORT = 8000;
+        this.host = process.env.HOST;
         this.usuariosPath = '/api/v1/usuarios';
         this.categoriaPath = '/api/v1/categorias';
         this.clientePath = '/api/v1/clientes';
@@ -70,8 +73,12 @@ class Server {
     }
 
     listen() {
-        this.app.listen( this.port, () => {
-            console.log('Servidor corriendo en puerto', this.port );
+        /*this.app.listen( this.port, () => {
+            console.log('Servidor corriendo en',this.port)
+
+        });*/
+        this.app.listen(this.port, this.host, () => {
+        console.log(`Running on http://${this.host}:${this.port}`)
         });
     }
 
